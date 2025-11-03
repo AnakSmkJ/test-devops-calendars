@@ -3,9 +3,9 @@ name: build-and-lint
 # 👇 Trigger: ทำงานเมื่อมี push หรือ PR มาที่ branch main หรือ dev
 on:
   push:
-    branches: [main, dev]
+    branches: [main, dev, master]
   pull_request:
-    branches: [main, dev]
+    branches: [main, dev, master]
 
 jobs:
   build-and-lint:
