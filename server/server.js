@@ -19,5 +19,5 @@ app.use(cors());
 //Auto Route
 readdirSync('./routes').map((r) => app.use('/api', require('./routes/' + r)));
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 1400;
 app.listen(port, () => console.log('Server is Running on port' + port));
