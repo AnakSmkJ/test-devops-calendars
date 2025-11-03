@@ -1,0 +1,36 @@
+name: myproject
+
+services:
+  backserver:
+    build:
+      context: ./server     # ชี้ไปที่โฟลเดอร์ server
+    env_file:
+      - ./server/.env        # ใช้ .env จาก host
+    image: myback
+    container_name: mybackcon
+    ports:
+      - "5000:5000"
+
+  web:
+    build:
+      context: ./client
+    env_file:
+      - ./client/.env        # ใช้ .env จาก host
+    image: myweb
+    container_name: mywebcon
+    ports:
+      - "3000:3000"
+
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      # - ./data:/data/db
+      - mongo-data:/data/db
+      - mongo-configdb:/data/configdb
+
+volumes:
+  mongo-data: 
+  mongo-configdb:
+
