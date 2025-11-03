@@ -7,6 +7,7 @@ exports.createEvent = async (req, res) => {
     // console.log(req.body)
     // res.send('Create Event Success')
   } catch (err) {
+    console.log(err)
     console.log('Server Error');
     res.status(500).send('Server Error');
   }
@@ -19,6 +20,7 @@ exports.listEvent = async (req, res) => {
     // console.log(req.body)
     // res.send('Create Event Success')
   } catch (err) {
+    console.log(err)
     console.log('Server Error');
     res.status(500).send('Server Error');
   }
@@ -40,6 +42,7 @@ exports.currentMonth = async (req, res) => {
     }).sort({ start: 1 });
     res.send(currentM);
   } catch (err) {
+    console.log(err)
     console.log('Server Error');
     res.status(500).send('Server Error');
   }
