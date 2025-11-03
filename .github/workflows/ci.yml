@@ -1,49 +1,51 @@
 name: build-and-lint
 
-#trigger: define when this workflow should run
-#trigger on push to these branches
+# 👇 Trigger: ทำงานเมื่อมี push หรือ PR มาที่ branch main หรือ dev
 on:
   push:
-    branches: [main,dev]
-  pull_request: 
-    branches: [main,dev]
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
 
-jobs: 
+jobs:
   build-and-lint:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout โค้ด
       - name: Checkout repo
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
 
-      - name : Setup Node
+      # 2️⃣ Setup Node.js environment
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-vertion: 20
+          node-version: 20   # ✅ key ต้องเป็น node-version (ไม่ใช่ node-vertion)
 
+      # 3️⃣ Install backend dependencies
       - name: Install backend dependencies
         working-directory: server
         run: npm ci
 
+      # 4️⃣ Lint backend
       - name: Lint backend
         working-directory: server
-        run: npm run lint -- --max-warning=0
+        run: npm run lint -- --max-warnings=0
 
+      # 5️⃣ Install frontend dependencies
       - name: Install frontend dependencies
         working-directory: client
         run: npm ci
 
+      # 6️⃣ Lint frontend
       - name: Lint frontend
         working-directory: client
-        run: npm run lint -- --max-warning=0
+        run: npm run lint -- --max-warnings=0
 
+      # 7️⃣ Build backend Docker image
       - name: Build backend image
         run: docker build -t backend ./server
 
+      # 8️⃣ Build frontend Docker image
       - name: Build frontend image
         run: docker build -t frontend ./client
-
-      
-
-
-    
