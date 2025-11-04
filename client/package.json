@@ -20,11 +20,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "HOST=0.0.0.0 PORT=3000 react-scripts start",
-    "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."
@@ -49,10 +47,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",
+    "@vitejs/plugin-react": "^5.1.0",
     "eslint": "^9.39.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "vite": "^7.1.12"
   }
 }
