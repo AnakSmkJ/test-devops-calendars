@@ -1,4 +1,4 @@
-FROM node:22.16.0
+FROM node:20-alpine
 WORKDIR /calendar/server
 COPY package*.json .
 RUN npm install --no-cache-dir
