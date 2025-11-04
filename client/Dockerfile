@@ -1,7 +1,16 @@
-FROM node:22.16.0
+
+FROM node:20-alpine
+
 WORKDIR /calendar/client
-COPY package*.json .
-RUN npm install --no-cache-dir
+COPY package*.json ./
+RUN npm install
 COPY . .
+
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
+# Build frontend
+RUN npm run build
+
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "3000"]

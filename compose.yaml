@@ -7,6 +7,7 @@ services:
     env_file:
       - ./server/.env        # ใช้ .env จาก host
     image: myback
+    restart: always
     container_name: mybackcon
     ports:
       - "5000:5000"
@@ -14,10 +15,13 @@ services:
   web:
     build:
       context: ./client
+      args:
+        REACT_API_URL: http://3.107.26.249:5000/api
     env_file:
       - ./client/.env        # ใช้ .env จาก host
     image: myweb
     container_name: mywebcon
+    restart: always
     ports:
       - "3000:3000"
 
@@ -29,6 +33,7 @@ services:
       # - ./data:/data/db
       - mongo-data:/data/db
       - mongo-configdb:/data/configdb
+    restart: always
 
 volumes:
   mongo-data: 
